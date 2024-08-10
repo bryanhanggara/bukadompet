@@ -64,4 +64,22 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relasi ke Topup
+    public function topups()
+    {
+        return $this->hasMany(Topup::class, 'user_id', 'id');
+    }
+
+    // Relasi ke Transfer
+    public function transfers()
+    {
+        return $this->hasMany(Transfer::class, 'user_id', 'id');
+    }
+
+    // Relasi ke Payment
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'user_id', 'id');
+    }
 }

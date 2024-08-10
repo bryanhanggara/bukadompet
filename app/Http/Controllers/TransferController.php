@@ -29,6 +29,7 @@ class TransferController extends Controller
         $receiver = User::findOrFail($request->user_receive_amount);
     
         $transfer = new Transfer();
+        $transfer->user_id = $user->id;
         $transfer->user_receive_amount = $receiver->id;
         $transfer->amount = $request->amount;
         $transfer->remaks = $request->remaks;

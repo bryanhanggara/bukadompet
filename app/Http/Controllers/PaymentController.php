@@ -22,9 +22,11 @@ class PaymentController extends Controller
             'remaks' => 'required'
         ]);
 
-        $balance = Auth::user()->balance;
+        $user = Auth::user();
+        $balance = $user->balance;
 
         $data = new Payment();
+        $data->user_id = $user->id;
         $data->amount = $request->amount;
         $data->remaks = $request->remaks;
         $data->balance_before = $balance;

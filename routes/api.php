@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TopupController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TransferController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,3 +20,4 @@ Route::post('login',[LoginController::class,'login']);
 Route::post('topup', [TopupController::class, 'topUp'])->middleware('auth:sanctum');
 Route::post('pay', [PaymentController::class, 'payment'])->middleware('auth:sanctum');
 Route::post('transfer', [TransferController::class, 'transfer'])->middleware('auth:sanctum');
+Route::get('history', [TransactionController::class, 'getTransactionHistory'])->middleware('auth:sanctum');

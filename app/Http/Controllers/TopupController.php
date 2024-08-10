@@ -22,9 +22,11 @@ class TopupController extends Controller
             'amount_topup' => 'required'
         ]);
 
-        $balance = Auth::user()->balance;
+        $user = Auth::user();
+        $balance = $user->balance;
 
         $data = new Topup();
+        $data->user_id = $user->id;
         $data->amount_topup = $request->amount_topup;
         $data->balance_before = $balance;
         $data->balance_after = $balance + $request->amount_topup;
