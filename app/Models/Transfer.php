@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Payment extends Model
+class Transfer extends Model
 {
     use HasFactory;
-    
+
     public $incrementing = false;
 
     protected $keyType = 'string';
@@ -19,14 +19,17 @@ class Payment extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            if (empty($model->payment_id)) {
-                $model->payment_id = (string) Str::uuid();
+            if (empty($model->transfer_id)) {
+                $model->transfer_id = (string) Str::uuid();
             }
         });
     }
 
     protected $fillable = [
+        'user_receive_amount',
         'amount',
         'remaks'
     ];
+
+
 }
